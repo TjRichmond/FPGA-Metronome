@@ -21,7 +21,7 @@
 
 
 module Clock_Divider
-    #(parameter CLK_Size = 27, Duty_Cycle = 5)
+    #(parameter CLK_Size = 27, Duty_Cycle = 50)
     (
         input CLK, RST,
         input [CLK_Size-1:0] Counter_Limit,

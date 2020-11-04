@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
-| Date         : Wed Oct 28 04:52:57 2020
+| Date         : Wed Nov  4 01:33:11 2020
 | Host         : DESKTOP-UKCSK2N running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file Top_Module_timing_summary_routed.rpt -pb Top_Module_timing_summary_routed.pb -rpx Top_Module_timing_summary_routed.rpx -warn_on_violation
 | Design       : Top_Module
@@ -55,6 +55,10 @@ Table of Contents
 --------------------
  There are 2 register/latch pins with no clock driven by root clock pin: Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q (HIGH)
 
+ There are 25 register/latch pins with no clock driven by root clock pin: Metronome_Display/Pixel_CLK/CLK_Slow_reg/Q (HIGH)
+
+ There is 1 register/latch pin with no clock driven by root clock pin: Metronome_Display/VGA_Display/Display_Timing/Draw_Image_reg/Q (HIGH)
+
 
 2. checking constant_clock
 --------------------------
@@ -68,7 +72,7 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 4 pins that are not constrained for maximum delay. (HIGH)
+ There are 69 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
@@ -82,7 +86,7 @@ Table of Contents
 
 6. checking no_output_delay
 ---------------------------
- There are 4 ports with no output delay specified. (HIGH)
+ There are 10 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -127,7 +131,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      5.488        0.000                      0                   32        0.251        0.000                      0                   32        4.500        0.000                       0                    33  
+      5.085        0.000                      0                   34        0.171        0.000                      0                   34        4.500        0.000                       0                    35  
 
 
 All user specified timing constraints are met.
@@ -150,7 +154,7 @@ sys_clk_pin  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-sys_clk_pin         5.488        0.000                      0                   32        0.251        0.000                      0                   32        4.500        0.000                       0                    33  
+sys_clk_pin         5.085        0.000                      0                   34        0.171        0.000                      0                   34        4.500        0.000                       0                    35  
 
 
 ------------------------------------------------------------------------------------------------
@@ -181,524 +185,27 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  sys_clk_pin
   To Clock:  sys_clk_pin
 
-Setup :            0  Failing Endpoints,  Worst Slack        5.488ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.251ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        5.085ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.171ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             5.488ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
+Slack (MET) :             5.085ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/C
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.479ns  (logic 1.723ns (38.467%)  route 2.756ns (61.533%))
-  Logic Levels:           6  (CARRY4=4 LUT2=1 LUT3=1)
-  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.848ns = ( 14.848 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
-    Clock Pessimism Removal (CPR):    0.273ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.439     9.503    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X7Y31          LUT2 (Prop_lut2_I1_O)        0.124     9.627 r  Met_Clock/Metronome_Clock_Divider/Counter[10]_i_1/O
-                         net (fo=1, routed)           0.000     9.627    Met_Clock/Metronome_Clock_Divider/p_0_in[10]
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    W5                                                0.000    10.000 r  CLK (IN)
-                         net (fo=0)                   0.000    10.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.507    14.848    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/C
-                         clock pessimism              0.273    15.121    
-                         clock uncertainty           -0.035    15.086    
-    SLICE_X7Y31          FDCE (Setup_fdce_C_D)        0.029    15.115    Met_Clock/Metronome_Clock_Divider/Counter_reg[10]
-  -------------------------------------------------------------------
-                         required time                         15.115    
-                         arrival time                          -9.627    
-  -------------------------------------------------------------------
-                         slack                                  5.488    
-
-Slack (MET) :             5.491ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[17]/D
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[26]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.478ns  (logic 1.723ns (38.476%)  route 2.755ns (61.524%))
-  Logic Levels:           6  (CARRY4=4 LUT2=1 LUT3=1)
-  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.848ns = ( 14.848 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
-    Clock Pessimism Removal (CPR):    0.273ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.438     9.502    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X7Y31          LUT2 (Prop_lut2_I1_O)        0.124     9.626 r  Met_Clock/Metronome_Clock_Divider/Counter[17]_i_1/O
-                         net (fo=1, routed)           0.000     9.626    Met_Clock/Metronome_Clock_Divider/p_0_in[17]
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[17]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    W5                                                0.000    10.000 r  CLK (IN)
-                         net (fo=0)                   0.000    10.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.507    14.848    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[17]/C
-                         clock pessimism              0.273    15.121    
-                         clock uncertainty           -0.035    15.086    
-    SLICE_X7Y31          FDCE (Setup_fdce_C_D)        0.031    15.117    Met_Clock/Metronome_Clock_Divider/Counter_reg[17]
-  -------------------------------------------------------------------
-                         required time                         15.117    
-                         arrival time                          -9.626    
-  -------------------------------------------------------------------
-                         slack                                  5.491    
-
-Slack (MET) :             5.506ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[15]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.507ns  (logic 1.751ns (38.850%)  route 2.756ns (61.150%))
-  Logic Levels:           6  (CARRY4=4 LUT2=1 LUT3=1)
-  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.848ns = ( 14.848 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
-    Clock Pessimism Removal (CPR):    0.273ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.439     9.503    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X7Y31          LUT2 (Prop_lut2_I1_O)        0.152     9.655 r  Met_Clock/Metronome_Clock_Divider/Counter[15]_i_1/O
-                         net (fo=1, routed)           0.000     9.655    Met_Clock/Metronome_Clock_Divider/p_0_in[15]
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[15]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    W5                                                0.000    10.000 r  CLK (IN)
-                         net (fo=0)                   0.000    10.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.507    14.848    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[15]/C
-                         clock pessimism              0.273    15.121    
-                         clock uncertainty           -0.035    15.086    
-    SLICE_X7Y31          FDCE (Setup_fdce_C_D)        0.075    15.161    Met_Clock/Metronome_Clock_Divider/Counter_reg[15]
-  -------------------------------------------------------------------
-                         required time                         15.161    
-                         arrival time                          -9.655    
-  -------------------------------------------------------------------
-                         slack                                  5.506    
-
-Slack (MET) :             5.507ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.506ns  (logic 1.751ns (38.858%)  route 2.755ns (61.142%))
-  Logic Levels:           6  (CARRY4=4 LUT2=1 LUT3=1)
-  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.848ns = ( 14.848 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
-    Clock Pessimism Removal (CPR):    0.273ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.438     9.502    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X7Y31          LUT2 (Prop_lut2_I1_O)        0.152     9.654 r  Met_Clock/Metronome_Clock_Divider/Counter[1]_i_1/O
-                         net (fo=1, routed)           0.000     9.654    Met_Clock/Metronome_Clock_Divider/p_0_in[1]
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    W5                                                0.000    10.000 r  CLK (IN)
-                         net (fo=0)                   0.000    10.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.507    14.848    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/C
-                         clock pessimism              0.273    15.121    
-                         clock uncertainty           -0.035    15.086    
-    SLICE_X7Y31          FDCE (Setup_fdce_C_D)        0.075    15.161    Met_Clock/Metronome_Clock_Divider/Counter_reg[1]
-  -------------------------------------------------------------------
-                         required time                         15.161    
-                         arrival time                          -9.654    
-  -------------------------------------------------------------------
-                         slack                                  5.507    
-
-Slack (MET) :             5.601ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/D
-                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.415ns  (logic 1.753ns (39.708%)  route 2.662ns (60.292%))
-  Logic Levels:           6  (CARRY4=4 LUT3=2)
-  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
-    Clock Pessimism Removal (CPR):    0.273ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.344     9.409    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X5Y33          LUT3 (Prop_lut3_I0_O)        0.154     9.563 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_i_1/O
-                         net (fo=1, routed)           0.000     9.563    Met_Clock/Metronome_Clock_Divider/CLK_Slow_i_1_n_0
-    SLICE_X5Y33          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    W5                                                0.000    10.000 r  CLK (IN)
-                         net (fo=0)                   0.000    10.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.510    14.851    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
-                         clock pessimism              0.273    15.124    
-                         clock uncertainty           -0.035    15.089    
-    SLICE_X5Y33          FDPE (Setup_fdpe_C_D)        0.075    15.164    Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg
-  -------------------------------------------------------------------
-                         required time                         15.164    
-                         arrival time                          -9.563    
-  -------------------------------------------------------------------
-                         slack                                  5.601    
-
-Slack (MET) :             5.603ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[11]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.366ns  (logic 1.723ns (39.467%)  route 2.643ns (60.533%))
-  Logic Levels:           6  (CARRY4=4 LUT2=1 LUT3=1)
-  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.848ns = ( 14.848 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
-    Clock Pessimism Removal (CPR):    0.273ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.325     9.390    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X5Y31          LUT2 (Prop_lut2_I1_O)        0.124     9.514 r  Met_Clock/Metronome_Clock_Divider/Counter[11]_i_1/O
-                         net (fo=1, routed)           0.000     9.514    Met_Clock/Metronome_Clock_Divider/p_0_in[11]
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[11]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    W5                                                0.000    10.000 r  CLK (IN)
-                         net (fo=0)                   0.000    10.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.507    14.848    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[11]/C
-                         clock pessimism              0.273    15.121    
-                         clock uncertainty           -0.035    15.086    
-    SLICE_X5Y31          FDCE (Setup_fdce_C_D)        0.031    15.117    Met_Clock/Metronome_Clock_Divider/Counter_reg[11]
-  -------------------------------------------------------------------
-                         required time                         15.117    
-                         arrival time                          -9.514    
-  -------------------------------------------------------------------
-                         slack                                  5.603    
-
-Slack (MET) :             5.619ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[19]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.394ns  (logic 1.751ns (39.852%)  route 2.643ns (60.148%))
-  Logic Levels:           6  (CARRY4=4 LUT2=1 LUT3=1)
-  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.848ns = ( 14.848 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
-    Clock Pessimism Removal (CPR):    0.273ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.325     9.390    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X5Y31          LUT2 (Prop_lut2_I1_O)        0.152     9.542 r  Met_Clock/Metronome_Clock_Divider/Counter[19]_i_1/O
-                         net (fo=1, routed)           0.000     9.542    Met_Clock/Metronome_Clock_Divider/p_0_in[19]
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[19]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                     10.000    10.000 r  
-    W5                                                0.000    10.000 r  CLK (IN)
-                         net (fo=0)                   0.000    10.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.507    14.848    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[19]/C
-                         clock pessimism              0.273    15.121    
-                         clock uncertainty           -0.035    15.086    
-    SLICE_X5Y31          FDCE (Setup_fdce_C_D)        0.075    15.161    Met_Clock/Metronome_Clock_Divider/Counter_reg[19]
-  -------------------------------------------------------------------
-                         required time                         15.161    
-                         arrival time                          -9.542    
-  -------------------------------------------------------------------
-                         slack                                  5.619    
-
-Slack (MET) :             5.656ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[24]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.337ns  (logic 1.723ns (39.725%)  route 2.614ns (60.275%))
-  Logic Levels:           6  (CARRY4=4 LUT2=1 LUT3=1)
+  Data Path Delay:        4.911ns  (logic 2.457ns (50.026%)  route 2.454ns (49.974%))
+  Logic Levels:           8  (CARRY4=7 LUT2=1)
   Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
+    Destination Clock Delay (DCD):    4.848ns = ( 14.848 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.145ns
     Clock Pessimism Removal (CPR):    0.297ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -715,28 +222,35 @@ Slack (MET) :             5.656ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
+                         net (fo=34, routed)          1.624     5.145    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.297     9.362    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X7Y33          LUT2 (Prop_lut2_I1_O)        0.124     9.486 r  Met_Clock/Metronome_Clock_Divider/Counter[24]_i_1/O
-                         net (fo=1, routed)           0.000     9.486    Met_Clock/Metronome_Clock_Divider/p_0_in[24]
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[24]/D
+    SLICE_X7Y31          FDCE (Prop_fdce_C_Q)         0.419     5.564 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/Q
+                         net (fo=3, routed)           1.225     6.790    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[1]
+    SLICE_X11Y28         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.831     7.621 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.621    Met_Clock/Metronome_Clock_Divider/Counter0_carry_n_0
+    SLICE_X11Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.735 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.735    Met_Clock/Metronome_Clock_Divider/Counter0_carry__0_n_0
+    SLICE_X11Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.849 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.849    Met_Clock/Metronome_Clock_Divider/Counter0_carry__1_n_0
+    SLICE_X11Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.963 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.963    Met_Clock/Metronome_Clock_Divider/Counter0_carry__2_n_0
+    SLICE_X11Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.077 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.077    Met_Clock/Metronome_Clock_Divider/Counter0_carry__3_n_0
+    SLICE_X11Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.191 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.191    Met_Clock/Metronome_Clock_Divider/Counter0_carry__4_n_0
+    SLICE_X11Y34         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     8.525 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__5/O[1]
+                         net (fo=1, routed)           1.229     9.754    Met_Clock/Metronome_Clock_Divider/Counter0_carry__5_n_6
+    SLICE_X7Y31          LUT2 (Prop_lut2_I0_O)        0.303    10.057 r  Met_Clock/Metronome_Clock_Divider/Counter[26]_i_1/O
+                         net (fo=1, routed)           0.000    10.057    Met_Clock/Metronome_Clock_Divider/p_0_in[26]
+    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[26]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -746,31 +260,31 @@ Slack (MET) :             5.656ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.510    14.851    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[24]/C
-                         clock pessimism              0.297    15.148    
-                         clock uncertainty           -0.035    15.113    
-    SLICE_X7Y33          FDCE (Setup_fdce_C_D)        0.029    15.142    Met_Clock/Metronome_Clock_Divider/Counter_reg[24]
+                         net (fo=34, routed)          1.507    14.848    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[26]/C
+                         clock pessimism              0.297    15.145    
+                         clock uncertainty           -0.035    15.110    
+    SLICE_X7Y31          FDCE (Setup_fdce_C_D)        0.032    15.142    Met_Clock/Metronome_Clock_Divider/Counter_reg[26]
   -------------------------------------------------------------------
                          required time                         15.142    
-                         arrival time                          -9.486    
+                         arrival time                         -10.057    
   -------------------------------------------------------------------
-                         slack                                  5.656    
+                         slack                                  5.085    
 
-Slack (MET) :             5.674ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
+Slack (MET) :             5.199ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[5]/D
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[23]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.365ns  (logic 1.751ns (40.112%)  route 2.614ns (59.888%))
-  Logic Levels:           6  (CARRY4=4 LUT2=1 LUT3=1)
-  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
-    Clock Pessimism Removal (CPR):    0.297ns
+  Data Path Delay:        4.808ns  (logic 1.660ns (34.526%)  route 3.148ns (65.474%))
+  Logic Levels:           5  (CARRY4=3 LUT2=1 LUT4=1)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.078ns
+    Clock Pessimism Removal (CPR):    0.260ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -786,28 +300,25 @@ Slack (MET) :             5.674ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
+                         net (fo=34, routed)          1.557     5.078    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y30         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.297     9.362    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X7Y33          LUT2 (Prop_lut2_I1_O)        0.152     9.514 r  Met_Clock/Metronome_Clock_Divider/Counter[5]_i_1/O
-                         net (fo=1, routed)           0.000     9.514    Met_Clock/Metronome_Clock_Divider/p_0_in[5]
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[5]/D
+    SLICE_X12Y30         FDCE (Prop_fdce_C_Q)         0.478     5.556 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/Q
+                         net (fo=4, routed)           1.362     6.918    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[8]
+    SLICE_X4Y30          LUT4 (Prop_lut4_I0_O)        0.298     7.216 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8/O
+                         net (fo=1, routed)           0.000     7.216    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8_n_0
+    SLICE_X4Y30          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     7.748 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.748    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
+    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.862 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.862    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
+    SLICE_X4Y32          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.976 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
+                         net (fo=28, routed)          1.786     9.762    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
+    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.124     9.886 r  Met_Clock/Metronome_Clock_Divider/Counter[23]_i_1/O
+                         net (fo=1, routed)           0.000     9.886    Met_Clock/Metronome_Clock_Divider/p_0_in[23]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[23]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -817,31 +328,99 @@ Slack (MET) :             5.674ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.510    14.851    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[5]/C
-                         clock pessimism              0.297    15.148    
-                         clock uncertainty           -0.035    15.113    
-    SLICE_X7Y33          FDCE (Setup_fdce_C_D)        0.075    15.188    Met_Clock/Metronome_Clock_Divider/Counter_reg[5]
+                         net (fo=34, routed)          1.440    14.781    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[23]/C
+                         clock pessimism              0.260    15.041    
+                         clock uncertainty           -0.035    15.006    
+    SLICE_X10Y29         FDCE (Setup_fdce_C_D)        0.079    15.085    Met_Clock/Metronome_Clock_Divider/Counter_reg[23]
   -------------------------------------------------------------------
-                         required time                         15.188    
-                         arrival time                          -9.514    
+                         required time                         15.085    
+                         arrival time                          -9.886    
   -------------------------------------------------------------------
-                         slack                                  5.674    
+                         slack                                  5.199    
 
-Slack (MET) :             5.840ns  (required time - arrival time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
+Slack (MET) :             5.206ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.840ns  (logic 1.692ns (34.959%)  route 3.148ns (65.041%))
+  Logic Levels:           5  (CARRY4=3 LUT2=1 LUT4=1)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.078ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.557     5.078    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y30         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y30         FDCE (Prop_fdce_C_Q)         0.478     5.556 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/Q
+                         net (fo=4, routed)           1.362     6.918    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[8]
+    SLICE_X4Y30          LUT4 (Prop_lut4_I0_O)        0.298     7.216 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8/O
+                         net (fo=1, routed)           0.000     7.216    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8_n_0
+    SLICE_X4Y30          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     7.748 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.748    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
+    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.862 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.862    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
+    SLICE_X4Y32          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.976 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
+                         net (fo=28, routed)          1.786     9.762    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
+    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.156     9.918 r  Met_Clock/Metronome_Clock_Divider/Counter[6]_i_1/O
+                         net (fo=1, routed)           0.000     9.918    Met_Clock/Metronome_Clock_Divider/p_0_in[6]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    W5                                                0.000    10.000 r  CLK (IN)
+                         net (fo=0)                   0.000    10.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.440    14.781    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/C
+                         clock pessimism              0.260    15.041    
+                         clock uncertainty           -0.035    15.006    
+    SLICE_X10Y29         FDCE (Setup_fdce_C_D)        0.118    15.124    Met_Clock/Metronome_Clock_Divider/Counter_reg[6]
+  -------------------------------------------------------------------
+                         required time                         15.124    
+                         arrival time                          -9.918    
+  -------------------------------------------------------------------
+                         slack                                  5.206    
+
+Slack (MET) :             5.218ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[22]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        4.129ns  (logic 1.723ns (41.732%)  route 2.406ns (58.268%))
-  Logic Levels:           6  (CARRY4=4 LUT2=1 LUT3=1)
-  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.848ns = ( 14.848 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.148ns
-    Clock Pessimism Removal (CPR):    0.273ns
+  Data Path Delay:        4.789ns  (logic 1.660ns (34.663%)  route 3.129ns (65.337%))
+  Logic Levels:           5  (CARRY4=3 LUT2=1 LUT4=1)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.078ns
+    Clock Pessimism Removal (CPR):    0.260ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -857,28 +436,25 @@ Slack (MET) :             5.840ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           1.967     3.425    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.627     5.148    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y33          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
+                         net (fo=34, routed)          1.557     5.078    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y30         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X7Y33          FDCE (Prop_fdce_C_Q)         0.419     5.567 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/Q
-                         net (fo=4, routed)           1.317     6.885    Met_Clock/Metronome_Clock_Divider/Counter[3]
-    SLICE_X2Y30          LUT3 (Prop_lut3_I1_O)        0.296     7.181 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6/O
-                         net (fo=1, routed)           0.000     7.181    Met_Clock/Metronome_Clock_Divider/Counter1_carry_i_6_n_0
-    SLICE_X2Y30          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533     7.714 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry/CO[3]
-                         net (fo=1, routed)           0.000     7.714    Met_Clock/Metronome_Clock_Divider/Counter1_carry_n_0
-    SLICE_X2Y31          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.831 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     7.831    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
-    SLICE_X2Y32          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.948 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     7.948    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
-    SLICE_X2Y33          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     8.065 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
-                         net (fo=28, routed)          1.088     9.153    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
-    SLICE_X5Y31          LUT2 (Prop_lut2_I1_O)        0.124     9.277 r  Met_Clock/Metronome_Clock_Divider/Counter[22]_i_1/O
-                         net (fo=1, routed)           0.000     9.277    Met_Clock/Metronome_Clock_Divider/p_0_in[22]
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[22]/D
+    SLICE_X12Y30         FDCE (Prop_fdce_C_Q)         0.478     5.556 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/Q
+                         net (fo=4, routed)           1.362     6.918    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[8]
+    SLICE_X4Y30          LUT4 (Prop_lut4_I0_O)        0.298     7.216 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8/O
+                         net (fo=1, routed)           0.000     7.216    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8_n_0
+    SLICE_X4Y30          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     7.748 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.748    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
+    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.862 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.862    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
+    SLICE_X4Y32          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.976 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
+                         net (fo=28, routed)          1.767     9.743    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
+    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.124     9.867 r  Met_Clock/Metronome_Clock_Divider/Counter[22]_i_1/O
+                         net (fo=1, routed)           0.000     9.867    Met_Clock/Metronome_Clock_Divider/p_0_in[22]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[22]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -888,16 +464,431 @@ Slack (MET) :             5.840ns  (required time - arrival time)
     W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           1.862    13.250    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          1.507    14.848    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[22]/C
-                         clock pessimism              0.273    15.121    
-                         clock uncertainty           -0.035    15.086    
-    SLICE_X5Y31          FDCE (Setup_fdce_C_D)        0.031    15.117    Met_Clock/Metronome_Clock_Divider/Counter_reg[22]
+                         net (fo=34, routed)          1.440    14.781    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[22]/C
+                         clock pessimism              0.260    15.041    
+                         clock uncertainty           -0.035    15.006    
+    SLICE_X10Y29         FDCE (Setup_fdce_C_D)        0.079    15.085    Met_Clock/Metronome_Clock_Divider/Counter_reg[22]
   -------------------------------------------------------------------
-                         required time                         15.117    
-                         arrival time                          -9.277    
+                         required time                         15.085    
+                         arrival time                          -9.867    
   -------------------------------------------------------------------
-                         slack                                  5.840    
+                         slack                                  5.218    
+
+Slack (MET) :             5.228ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[2]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.818ns  (logic 1.689ns (35.056%)  route 3.129ns (64.944%))
+  Logic Levels:           5  (CARRY4=3 LUT2=1 LUT4=1)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.078ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.557     5.078    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y30         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y30         FDCE (Prop_fdce_C_Q)         0.478     5.556 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/Q
+                         net (fo=4, routed)           1.362     6.918    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[8]
+    SLICE_X4Y30          LUT4 (Prop_lut4_I0_O)        0.298     7.216 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8/O
+                         net (fo=1, routed)           0.000     7.216    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8_n_0
+    SLICE_X4Y30          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     7.748 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.748    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
+    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.862 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.862    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
+    SLICE_X4Y32          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.976 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
+                         net (fo=28, routed)          1.767     9.743    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
+    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.153     9.896 r  Met_Clock/Metronome_Clock_Divider/Counter[2]_i_1/O
+                         net (fo=1, routed)           0.000     9.896    Met_Clock/Metronome_Clock_Divider/p_0_in[2]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    W5                                                0.000    10.000 r  CLK (IN)
+                         net (fo=0)                   0.000    10.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.440    14.781    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[2]/C
+                         clock pessimism              0.260    15.041    
+                         clock uncertainty           -0.035    15.006    
+    SLICE_X10Y29         FDCE (Setup_fdce_C_D)        0.118    15.124    Met_Clock/Metronome_Clock_Divider/Counter_reg[2]
+  -------------------------------------------------------------------
+                         required time                         15.124    
+                         arrival time                          -9.896    
+  -------------------------------------------------------------------
+                         slack                                  5.228    
+
+Slack (MET) :             5.359ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[21]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.637ns  (logic 2.227ns (48.028%)  route 2.410ns (51.972%))
+  Logic Levels:           7  (CARRY4=6 LUT2=1)
+  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.848ns = ( 14.848 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.145ns
+    Clock Pessimism Removal (CPR):    0.297ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.624     5.145    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y31          FDCE (Prop_fdce_C_Q)         0.419     5.564 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/Q
+                         net (fo=3, routed)           1.225     6.790    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[1]
+    SLICE_X11Y28         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.831     7.621 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.621    Met_Clock/Metronome_Clock_Divider/Counter0_carry_n_0
+    SLICE_X11Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.735 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.735    Met_Clock/Metronome_Clock_Divider/Counter0_carry__0_n_0
+    SLICE_X11Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.849 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.849    Met_Clock/Metronome_Clock_Divider/Counter0_carry__1_n_0
+    SLICE_X11Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.963 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.963    Met_Clock/Metronome_Clock_Divider/Counter0_carry__2_n_0
+    SLICE_X11Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.077 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.077    Met_Clock/Metronome_Clock_Divider/Counter0_carry__3_n_0
+    SLICE_X11Y33         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     8.299 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__4/O[0]
+                         net (fo=1, routed)           1.184     9.483    Met_Clock/Metronome_Clock_Divider/Counter0_carry__4_n_7
+    SLICE_X7Y31          LUT2 (Prop_lut2_I0_O)        0.299     9.782 r  Met_Clock/Metronome_Clock_Divider/Counter[21]_i_1/O
+                         net (fo=1, routed)           0.000     9.782    Met_Clock/Metronome_Clock_Divider/p_0_in[21]
+    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[21]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    W5                                                0.000    10.000 r  CLK (IN)
+                         net (fo=0)                   0.000    10.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.507    14.848    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[21]/C
+                         clock pessimism              0.297    15.145    
+                         clock uncertainty           -0.035    15.110    
+    SLICE_X7Y31          FDCE (Setup_fdce_C_D)        0.031    15.141    Met_Clock/Metronome_Clock_Divider/Counter_reg[21]
+  -------------------------------------------------------------------
+                         required time                         15.141    
+                         arrival time                          -9.782    
+  -------------------------------------------------------------------
+                         slack                                  5.359    
+
+Slack (MET) :             5.365ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.640ns  (logic 1.660ns (35.776%)  route 2.980ns (64.224%))
+  Logic Levels:           5  (CARRY4=3 LUT2=1 LUT4=1)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.078ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.557     5.078    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y30         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y30         FDCE (Prop_fdce_C_Q)         0.478     5.556 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/Q
+                         net (fo=4, routed)           1.362     6.918    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[8]
+    SLICE_X4Y30          LUT4 (Prop_lut4_I0_O)        0.298     7.216 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8/O
+                         net (fo=1, routed)           0.000     7.216    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8_n_0
+    SLICE_X4Y30          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     7.748 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.748    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
+    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.862 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.862    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
+    SLICE_X4Y32          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.976 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
+                         net (fo=28, routed)          1.618     9.594    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
+    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.124     9.718 r  Met_Clock/Metronome_Clock_Divider/Counter[12]_i_1/O
+                         net (fo=1, routed)           0.000     9.718    Met_Clock/Metronome_Clock_Divider/p_0_in[12]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    W5                                                0.000    10.000 r  CLK (IN)
+                         net (fo=0)                   0.000    10.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.440    14.781    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/C
+                         clock pessimism              0.260    15.041    
+                         clock uncertainty           -0.035    15.006    
+    SLICE_X10Y29         FDCE (Setup_fdce_C_D)        0.077    15.083    Met_Clock/Metronome_Clock_Divider/Counter_reg[12]
+  -------------------------------------------------------------------
+                         required time                         15.083    
+                         arrival time                          -9.718    
+  -------------------------------------------------------------------
+                         slack                                  5.365    
+
+Slack (MET) :             5.371ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[20]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.638ns  (logic 1.660ns (35.791%)  route 2.978ns (64.209%))
+  Logic Levels:           5  (CARRY4=3 LUT2=1 LUT4=1)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.078ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.557     5.078    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y30         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y30         FDCE (Prop_fdce_C_Q)         0.478     5.556 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/Q
+                         net (fo=4, routed)           1.362     6.918    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[8]
+    SLICE_X4Y30          LUT4 (Prop_lut4_I0_O)        0.298     7.216 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8/O
+                         net (fo=1, routed)           0.000     7.216    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8_n_0
+    SLICE_X4Y30          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     7.748 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.748    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
+    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.862 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.862    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
+    SLICE_X4Y32          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.976 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
+                         net (fo=28, routed)          1.616     9.592    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
+    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.124     9.716 r  Met_Clock/Metronome_Clock_Divider/Counter[20]_i_1/O
+                         net (fo=1, routed)           0.000     9.716    Met_Clock/Metronome_Clock_Divider/p_0_in[20]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[20]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    W5                                                0.000    10.000 r  CLK (IN)
+                         net (fo=0)                   0.000    10.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.440    14.781    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[20]/C
+                         clock pessimism              0.260    15.041    
+                         clock uncertainty           -0.035    15.006    
+    SLICE_X10Y29         FDCE (Setup_fdce_C_D)        0.081    15.087    Met_Clock/Metronome_Clock_Divider/Counter_reg[20]
+  -------------------------------------------------------------------
+                         required time                         15.087    
+                         arrival time                          -9.716    
+  -------------------------------------------------------------------
+                         slack                                  5.371    
+
+Slack (MET) :             5.382ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[16]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.664ns  (logic 1.684ns (36.106%)  route 2.980ns (63.894%))
+  Logic Levels:           5  (CARRY4=3 LUT2=1 LUT4=1)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.078ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.557     5.078    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y30         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y30         FDCE (Prop_fdce_C_Q)         0.478     5.556 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/Q
+                         net (fo=4, routed)           1.362     6.918    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[8]
+    SLICE_X4Y30          LUT4 (Prop_lut4_I0_O)        0.298     7.216 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8/O
+                         net (fo=1, routed)           0.000     7.216    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8_n_0
+    SLICE_X4Y30          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     7.748 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.748    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
+    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.862 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.862    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
+    SLICE_X4Y32          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.976 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
+                         net (fo=28, routed)          1.618     9.594    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
+    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.148     9.742 r  Met_Clock/Metronome_Clock_Divider/Counter[16]_i_1/O
+                         net (fo=1, routed)           0.000     9.742    Met_Clock/Metronome_Clock_Divider/p_0_in[16]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    W5                                                0.000    10.000 r  CLK (IN)
+                         net (fo=0)                   0.000    10.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.440    14.781    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[16]/C
+                         clock pessimism              0.260    15.041    
+                         clock uncertainty           -0.035    15.006    
+    SLICE_X10Y29         FDCE (Setup_fdce_C_D)        0.118    15.124    Met_Clock/Metronome_Clock_Divider/Counter_reg[16]
+  -------------------------------------------------------------------
+                         required time                         15.124    
+                         arrival time                          -9.742    
+  -------------------------------------------------------------------
+                         slack                                  5.382    
+
+Slack (MET) :             5.382ns  (required time - arrival time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[9]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.664ns  (logic 1.686ns (36.149%)  route 2.978ns (63.851%))
+  Logic Levels:           5  (CARRY4=3 LUT2=1 LUT4=1)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.781ns = ( 14.781 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.078ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.557     5.078    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y30         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y30         FDCE (Prop_fdce_C_Q)         0.478     5.556 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/Q
+                         net (fo=4, routed)           1.362     6.918    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[8]
+    SLICE_X4Y30          LUT4 (Prop_lut4_I0_O)        0.298     7.216 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8/O
+                         net (fo=1, routed)           0.000     7.216    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_i_8_n_0
+    SLICE_X4Y30          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     7.748 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.748    Met_Clock/Metronome_Clock_Divider/Counter1_carry__0_n_0
+    SLICE_X4Y31          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.862 r  Met_Clock/Metronome_Clock_Divider/Counter1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     7.862    Met_Clock/Metronome_Clock_Divider/Counter1_carry__1_n_0
+    SLICE_X4Y32          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.976 f  Met_Clock/Metronome_Clock_Divider/Counter1_carry__2/CO[3]
+                         net (fo=28, routed)          1.616     9.592    Met_Clock/Metronome_Clock_Divider/Counter1_carry__2_n_0
+    SLICE_X10Y29         LUT2 (Prop_lut2_I1_O)        0.150     9.742 r  Met_Clock/Metronome_Clock_Divider/Counter[9]_i_1/O
+                         net (fo=1, routed)           0.000     9.742    Met_Clock/Metronome_Clock_Divider/p_0_in[9]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[9]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    W5                                                0.000    10.000 r  CLK (IN)
+                         net (fo=0)                   0.000    10.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          1.440    14.781    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[9]/C
+                         clock pessimism              0.260    15.041    
+                         clock uncertainty           -0.035    15.006    
+    SLICE_X10Y29         FDCE (Setup_fdce_C_D)        0.118    15.124    Met_Clock/Metronome_Clock_Divider/Counter_reg[9]
+  -------------------------------------------------------------------
+                         required time                         15.124    
+                         arrival time                          -9.742    
+  -------------------------------------------------------------------
+                         slack                                  5.382    
 
 
 
@@ -905,7 +896,56 @@ Slack (MET) :             5.840ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.251ns  (arrival time - required time)
+Slack (MET) :             0.171ns  (arrival time - required time)
+  Source:                 Metronome_Display/Pixel_CLK/Counter_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Metronome_Display/Pixel_CLK/CLK_Slow_reg/D
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.231ns  (logic 0.164ns (70.995%)  route 0.067ns (29.005%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.980ns
+    Source Clock Delay      (SCD):    1.468ns
+    Clock Pessimism Removal (CPR):    0.512ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          0.585     1.468    Metronome_Display/Pixel_CLK/CLK_IBUF_BUFG
+    SLICE_X2Y22          FDCE                                         r  Metronome_Display/Pixel_CLK/Counter_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X2Y22          FDCE (Prop_fdce_C_Q)         0.164     1.632 r  Metronome_Display/Pixel_CLK/Counter_reg[0]/Q
+                         net (fo=2, routed)           0.067     1.699    Metronome_Display/Pixel_CLK/Counter_reg_n_0_[0]
+    SLICE_X2Y22          FDPE                                         r  Metronome_Display/Pixel_CLK/CLK_Slow_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          0.853     1.980    Metronome_Display/Pixel_CLK/CLK_IBUF_BUFG
+    SLICE_X2Y22          FDPE                                         r  Metronome_Display/Pixel_CLK/CLK_Slow_reg/C
+                         clock pessimism             -0.512     1.468    
+    SLICE_X2Y22          FDPE (Hold_fdpe_C_D)         0.060     1.528    Metronome_Display/Pixel_CLK/CLK_Slow_reg
+  -------------------------------------------------------------------
+                         required time                         -1.528    
+                         arrival time                           1.699    
+  -------------------------------------------------------------------
+                         slack                                  0.171    
+
+Slack (MET) :             0.253ns  (arrival time - required time)
   Source:                 Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
                             (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            Met_Clock/Beat_Out_reg[2]/D
@@ -913,11 +953,11 @@ Slack (MET) :             0.251ns  (arrival time - required time)
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.358ns  (logic 0.229ns (63.927%)  route 0.129ns (36.073%))
+  Data Path Delay:        0.360ns  (logic 0.229ns (63.692%)  route 0.131ns (36.308%))
   Logic Levels:           1  (LUT3=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.984ns
-    Source Clock Delay      (SCD):    1.471ns
+    Destination Clock Delay (DCD):    1.985ns
+    Source Clock Delay      (SCD):    1.472ns
     Clock Pessimism Removal (CPR):    0.513ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -929,14 +969,14 @@ Slack (MET) :             0.251ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.588     1.471    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
+                         net (fo=34, routed)          0.589     1.472    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y33          FDPE (Prop_fdpe_C_Q)         0.128     1.599 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
-                         net (fo=7, routed)           0.129     1.728    Met_Clock/CLK_Slow
-    SLICE_X5Y33          LUT3 (Prop_lut3_I1_O)        0.101     1.829 r  Met_Clock/Beat_Out[2]_i_1/O
-                         net (fo=1, routed)           0.000     1.829    Met_Clock/Beat_Out[2]_i_1_n_0
-    SLICE_X5Y33          FDCE                                         r  Met_Clock/Beat_Out_reg[2]/D
+    SLICE_X1Y32          FDPE (Prop_fdpe_C_Q)         0.128     1.600 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
+                         net (fo=7, routed)           0.131     1.731    Met_Clock/CLK_Slow
+    SLICE_X1Y32          LUT3 (Prop_lut3_I1_O)        0.101     1.832 r  Met_Clock/Beat_Out[2]_i_1/O
+                         net (fo=1, routed)           0.000     1.832    Met_Clock/Beat_Out[2]_i_1_n_0
+    SLICE_X1Y32          FDCE                                         r  Met_Clock/Beat_Out_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -946,17 +986,68 @@ Slack (MET) :             0.251ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.857     1.984    Met_Clock/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDCE                                         r  Met_Clock/Beat_Out_reg[2]/C
-                         clock pessimism             -0.513     1.471    
-    SLICE_X5Y33          FDCE (Hold_fdce_C_D)         0.107     1.578    Met_Clock/Beat_Out_reg[2]
+                         net (fo=34, routed)          0.858     1.985    Met_Clock/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDCE                                         r  Met_Clock/Beat_Out_reg[2]/C
+                         clock pessimism             -0.513     1.472    
+    SLICE_X1Y32          FDCE (Hold_fdce_C_D)         0.107     1.579    Met_Clock/Beat_Out_reg[2]
   -------------------------------------------------------------------
-                         required time                         -1.578    
-                         arrival time                           1.829    
+                         required time                         -1.579    
+                         arrival time                           1.832    
   -------------------------------------------------------------------
-                         slack                                  0.251    
+                         slack                                  0.253    
 
-Slack (MET) :             0.264ns  (arrival time - required time)
+Slack (MET) :             0.263ns  (arrival time - required time)
+  Source:                 Metronome_Display/Pixel_CLK/Counter_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Metronome_Display/Pixel_CLK/Counter_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.383ns  (logic 0.209ns (54.569%)  route 0.174ns (45.431%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.980ns
+    Source Clock Delay      (SCD):    1.468ns
+    Clock Pessimism Removal (CPR):    0.512ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          0.585     1.468    Metronome_Display/Pixel_CLK/CLK_IBUF_BUFG
+    SLICE_X2Y22          FDCE                                         r  Metronome_Display/Pixel_CLK/Counter_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X2Y22          FDCE (Prop_fdce_C_Q)         0.164     1.632 f  Metronome_Display/Pixel_CLK/Counter_reg[0]/Q
+                         net (fo=2, routed)           0.174     1.806    Metronome_Display/Pixel_CLK/Counter_reg_n_0_[0]
+    SLICE_X2Y22          LUT1 (Prop_lut1_I0_O)        0.045     1.851 r  Metronome_Display/Pixel_CLK/Counter[0]_i_1/O
+                         net (fo=1, routed)           0.000     1.851    Metronome_Display/Pixel_CLK/Counter[0]_i_1_n_0
+    SLICE_X2Y22          FDCE                                         r  Metronome_Display/Pixel_CLK/Counter_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          0.853     1.980    Metronome_Display/Pixel_CLK/CLK_IBUF_BUFG
+    SLICE_X2Y22          FDCE                                         r  Metronome_Display/Pixel_CLK/Counter_reg[0]/C
+                         clock pessimism             -0.512     1.468    
+    SLICE_X2Y22          FDCE (Hold_fdce_C_D)         0.120     1.588    Metronome_Display/Pixel_CLK/Counter_reg[0]
+  -------------------------------------------------------------------
+                         required time                         -1.588    
+                         arrival time                           1.851    
+  -------------------------------------------------------------------
+                         slack                                  0.263    
+
+Slack (MET) :             0.266ns  (arrival time - required time)
   Source:                 Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
                             (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            Met_Clock/Beat_Out_reg[1]/D
@@ -964,11 +1055,11 @@ Slack (MET) :             0.264ns  (arrival time - required time)
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.355ns  (logic 0.226ns (63.622%)  route 0.129ns (36.378%))
+  Data Path Delay:        0.357ns  (logic 0.226ns (63.387%)  route 0.131ns (36.613%))
   Logic Levels:           1  (LUT3=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.984ns
-    Source Clock Delay      (SCD):    1.471ns
+    Destination Clock Delay (DCD):    1.985ns
+    Source Clock Delay      (SCD):    1.472ns
     Clock Pessimism Removal (CPR):    0.513ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -980,14 +1071,14 @@ Slack (MET) :             0.264ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.588     1.471    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
+                         net (fo=34, routed)          0.589     1.472    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y33          FDPE (Prop_fdpe_C_Q)         0.128     1.599 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
-                         net (fo=7, routed)           0.129     1.728    Met_Clock/CLK_Slow
-    SLICE_X5Y33          LUT3 (Prop_lut3_I2_O)        0.098     1.826 r  Met_Clock/Beat_Out[1]_i_1/O
-                         net (fo=1, routed)           0.000     1.826    Met_Clock/Beat_Out[1]_i_1_n_0
-    SLICE_X5Y33          FDCE                                         r  Met_Clock/Beat_Out_reg[1]/D
+    SLICE_X1Y32          FDPE (Prop_fdpe_C_Q)         0.128     1.600 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
+                         net (fo=7, routed)           0.131     1.731    Met_Clock/CLK_Slow
+    SLICE_X1Y32          LUT3 (Prop_lut3_I2_O)        0.098     1.829 r  Met_Clock/Beat_Out[1]_i_1/O
+                         net (fo=1, routed)           0.000     1.829    Met_Clock/Beat_Out[1]_i_1_n_0
+    SLICE_X1Y32          FDCE                                         r  Met_Clock/Beat_Out_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -997,17 +1088,17 @@ Slack (MET) :             0.264ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.857     1.984    Met_Clock/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDCE                                         r  Met_Clock/Beat_Out_reg[1]/C
-                         clock pessimism             -0.513     1.471    
-    SLICE_X5Y33          FDCE (Hold_fdce_C_D)         0.091     1.562    Met_Clock/Beat_Out_reg[1]
+                         net (fo=34, routed)          0.858     1.985    Met_Clock/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDCE                                         r  Met_Clock/Beat_Out_reg[1]/C
+                         clock pessimism             -0.513     1.472    
+    SLICE_X1Y32          FDCE (Hold_fdce_C_D)         0.091     1.563    Met_Clock/Beat_Out_reg[1]
   -------------------------------------------------------------------
-                         required time                         -1.562    
-                         arrival time                           1.826    
+                         required time                         -1.563    
+                         arrival time                           1.829    
   -------------------------------------------------------------------
-                         slack                                  0.264    
+                         slack                                  0.266    
 
-Slack (MET) :             0.264ns  (arrival time - required time)
+Slack (MET) :             0.266ns  (arrival time - required time)
   Source:                 Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
                             (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            Met_Clock/Beat_Out_reg[0]/D
@@ -1015,11 +1106,11 @@ Slack (MET) :             0.264ns  (arrival time - required time)
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.356ns  (logic 0.226ns (63.444%)  route 0.130ns (36.556%))
+  Data Path Delay:        0.358ns  (logic 0.226ns (63.210%)  route 0.132ns (36.790%))
   Logic Levels:           1  (LUT3=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.984ns
-    Source Clock Delay      (SCD):    1.471ns
+    Destination Clock Delay (DCD):    1.985ns
+    Source Clock Delay      (SCD):    1.472ns
     Clock Pessimism Removal (CPR):    0.513ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -1031,65 +1122,14 @@ Slack (MET) :             0.264ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.588     1.471    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
+                         net (fo=34, routed)          0.589     1.472    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y33          FDPE (Prop_fdpe_C_Q)         0.128     1.599 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
-                         net (fo=7, routed)           0.130     1.729    Met_Clock/CLK_Slow
-    SLICE_X5Y33          LUT3 (Prop_lut3_I0_O)        0.098     1.827 r  Met_Clock/Beat_Out[0]_i_1/O
-                         net (fo=1, routed)           0.000     1.827    Met_Clock/Beat_Out[0]_i_1_n_0
-    SLICE_X5Y33          FDCE                                         r  Met_Clock/Beat_Out_reg[0]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           0.685     1.099    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.857     1.984    Met_Clock/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDCE                                         r  Met_Clock/Beat_Out_reg[0]/C
-                         clock pessimism             -0.513     1.471    
-    SLICE_X5Y33          FDCE (Hold_fdce_C_D)         0.092     1.563    Met_Clock/Beat_Out_reg[0]
-  -------------------------------------------------------------------
-                         required time                         -1.563    
-                         arrival time                           1.827    
-  -------------------------------------------------------------------
-                         slack                                  0.264    
-
-Slack (MET) :             0.288ns  (arrival time - required time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.379ns  (logic 0.186ns (49.116%)  route 0.193ns (50.884%))
-  Logic Levels:           1  (LUT2=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.982ns
-    Source Clock Delay      (SCD):    1.469ns
-    Clock Pessimism Removal (CPR):    0.513ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           0.631     0.858    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.586     1.469    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X5Y31          FDCE (Prop_fdce_C_Q)         0.141     1.610 f  Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/Q
-                         net (fo=4, routed)           0.193     1.803    Met_Clock/Metronome_Clock_Divider/Counter[0]
-    SLICE_X5Y31          LUT2 (Prop_lut2_I0_O)        0.045     1.848 r  Met_Clock/Metronome_Clock_Divider/Counter[0]_i_1/O
-                         net (fo=1, routed)           0.000     1.848    Met_Clock/Metronome_Clock_Divider/Counter[0]_i_1_n_0
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/D
+    SLICE_X1Y32          FDPE (Prop_fdpe_C_Q)         0.128     1.600 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
+                         net (fo=7, routed)           0.132     1.732    Met_Clock/CLK_Slow
+    SLICE_X1Y32          LUT3 (Prop_lut3_I0_O)        0.098     1.830 r  Met_Clock/Beat_Out[0]_i_1/O
+                         net (fo=1, routed)           0.000     1.830    Met_Clock/Beat_Out[0]_i_1_n_0
+    SLICE_X1Y32          FDCE                                         r  Met_Clock/Beat_Out_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1099,17 +1139,17 @@ Slack (MET) :             0.288ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.855     1.982    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/C
-                         clock pessimism             -0.513     1.469    
-    SLICE_X5Y31          FDCE (Hold_fdce_C_D)         0.091     1.560    Met_Clock/Metronome_Clock_Divider/Counter_reg[0]
+                         net (fo=34, routed)          0.858     1.985    Met_Clock/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDCE                                         r  Met_Clock/Beat_Out_reg[0]/C
+                         clock pessimism             -0.513     1.472    
+    SLICE_X1Y32          FDCE (Hold_fdce_C_D)         0.092     1.564    Met_Clock/Beat_Out_reg[0]
   -------------------------------------------------------------------
-                         required time                         -1.560    
-                         arrival time                           1.848    
+                         required time                         -1.564    
+                         arrival time                           1.830    
   -------------------------------------------------------------------
-                         slack                                  0.288    
+                         slack                                  0.266    
 
-Slack (MET) :             0.387ns  (arrival time - required time)
+Slack (MET) :             0.309ns  (arrival time - required time)
   Source:                 Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
                             (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/D
@@ -1117,11 +1157,11 @@ Slack (MET) :             0.387ns  (arrival time - required time)
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.494ns  (logic 0.225ns (45.526%)  route 0.269ns (54.474%))
+  Data Path Delay:        0.416ns  (logic 0.232ns (55.826%)  route 0.184ns (44.174%))
   Logic Levels:           1  (LUT3=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.984ns
-    Source Clock Delay      (SCD):    1.471ns
+    Destination Clock Delay (DCD):    1.985ns
+    Source Clock Delay      (SCD):    1.472ns
     Clock Pessimism Removal (CPR):    0.513ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -1133,14 +1173,14 @@ Slack (MET) :             0.387ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.588     1.471    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
+                         net (fo=34, routed)          0.589     1.472    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y33          FDPE (Prop_fdpe_C_Q)         0.128     1.599 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
-                         net (fo=7, routed)           0.269     1.868    Met_Clock/Metronome_Clock_Divider/CLK_Slow
-    SLICE_X5Y33          LUT3 (Prop_lut3_I2_O)        0.097     1.965 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_i_1/O
-                         net (fo=1, routed)           0.000     1.965    Met_Clock/Metronome_Clock_Divider/CLK_Slow_i_1_n_0
-    SLICE_X5Y33          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/D
+    SLICE_X1Y32          FDPE (Prop_fdpe_C_Q)         0.128     1.600 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
+                         net (fo=7, routed)           0.184     1.784    Met_Clock/Metronome_Clock_Divider/CLK_Slow
+    SLICE_X1Y32          LUT3 (Prop_lut3_I2_O)        0.104     1.888 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_i_1/O
+                         net (fo=1, routed)           0.000     1.888    Met_Clock/Metronome_Clock_Divider/CLK_Slow_i_1_n_0
+    SLICE_X1Y32          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1150,17 +1190,17 @@ Slack (MET) :             0.387ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.857     1.984    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
-                         clock pessimism             -0.513     1.471    
-    SLICE_X5Y33          FDPE (Hold_fdpe_C_D)         0.107     1.578    Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg
+                         net (fo=34, routed)          0.858     1.985    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
+                         clock pessimism             -0.513     1.472    
+    SLICE_X1Y32          FDPE (Hold_fdpe_C_D)         0.107     1.579    Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg
   -------------------------------------------------------------------
-                         required time                         -1.578    
-                         arrival time                           1.965    
+                         required time                         -1.579    
+                         arrival time                           1.888    
   -------------------------------------------------------------------
-                         slack                                  0.387    
+                         slack                                  0.309    
 
-Slack (MET) :             0.403ns  (arrival time - required time)
+Slack (MET) :             0.318ns  (arrival time - required time)
   Source:                 Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
                             (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            Met_Clock/Beat_Out_reg[3]/D
@@ -1168,11 +1208,11 @@ Slack (MET) :             0.403ns  (arrival time - required time)
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.495ns  (logic 0.226ns (45.636%)  route 0.269ns (54.364%))
+  Data Path Delay:        0.410ns  (logic 0.226ns (55.179%)  route 0.184ns (44.821%))
   Logic Levels:           1  (LUT3=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.984ns
-    Source Clock Delay      (SCD):    1.471ns
+    Destination Clock Delay (DCD):    1.985ns
+    Source Clock Delay      (SCD):    1.472ns
     Clock Pessimism Removal (CPR):    0.513ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -1184,68 +1224,14 @@ Slack (MET) :             0.403ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.588     1.471    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
+                         net (fo=34, routed)          0.589     1.472    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDPE                                         r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y33          FDPE (Prop_fdpe_C_Q)         0.128     1.599 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
-                         net (fo=7, routed)           0.269     1.868    Met_Clock/Metronome_Clock_Divider/CLK_Slow
-    SLICE_X5Y33          LUT3 (Prop_lut3_I2_O)        0.098     1.966 r  Met_Clock/Metronome_Clock_Divider/Beat_Out[3]_i_1/O
-                         net (fo=1, routed)           0.000     1.966    Met_Clock/Metronome_Clock_Divider_n_37
-    SLICE_X5Y33          FDCE                                         r  Met_Clock/Beat_Out_reg[3]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           0.685     1.099    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.857     1.984    Met_Clock/CLK_IBUF_BUFG
-    SLICE_X5Y33          FDCE                                         r  Met_Clock/Beat_Out_reg[3]/C
-                         clock pessimism             -0.513     1.471    
-    SLICE_X5Y33          FDCE (Hold_fdce_C_D)         0.092     1.563    Met_Clock/Beat_Out_reg[3]
-  -------------------------------------------------------------------
-                         required time                         -1.563    
-                         arrival time                           1.966    
-  -------------------------------------------------------------------
-                         slack                                  0.403    
-
-Slack (MET) :             0.591ns  (arrival time - required time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.682ns  (logic 0.360ns (52.810%)  route 0.322ns (47.190%))
-  Logic Levels:           2  (CARRY4=1 LUT2=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.982ns
-    Source Clock Delay      (SCD):    1.469ns
-    Clock Pessimism Removal (CPR):    0.513ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           0.631     0.858    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.586     1.469    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y31          FDCE (Prop_fdce_C_Q)         0.141     1.610 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/Q
-                         net (fo=4, routed)           0.127     1.737    Met_Clock/Metronome_Clock_Divider/Counter[10]
-    SLICE_X6Y31          CARRY4 (Prop_carry4_S[1]_O[1])
-                                                      0.111     1.848 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__1/O[1]
-                         net (fo=1, routed)           0.195     2.043    Met_Clock/Metronome_Clock_Divider/Counter0[10]
-    SLICE_X7Y31          LUT2 (Prop_lut2_I0_O)        0.108     2.151 r  Met_Clock/Metronome_Clock_Divider/Counter[10]_i_1/O
-                         net (fo=1, routed)           0.000     2.151    Met_Clock/Metronome_Clock_Divider/p_0_in[10]
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/D
+    SLICE_X1Y32          FDPE (Prop_fdpe_C_Q)         0.128     1.600 r  Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/Q
+                         net (fo=7, routed)           0.184     1.784    Met_Clock/Metronome_Clock_Divider/CLK_Slow
+    SLICE_X1Y32          LUT3 (Prop_lut3_I2_O)        0.098     1.882 r  Met_Clock/Metronome_Clock_Divider/Beat_Out[3]_i_1/O
+                         net (fo=1, routed)           0.000     1.882    Met_Clock/Metronome_Clock_Divider_n_37
+    SLICE_X1Y32          FDCE                                         r  Met_Clock/Beat_Out_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1255,138 +1241,30 @@ Slack (MET) :             0.591ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.855     1.982    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/C
-                         clock pessimism             -0.513     1.469    
-    SLICE_X7Y31          FDCE (Hold_fdce_C_D)         0.091     1.560    Met_Clock/Metronome_Clock_Divider/Counter_reg[10]
+                         net (fo=34, routed)          0.858     1.985    Met_Clock/CLK_IBUF_BUFG
+    SLICE_X1Y32          FDCE                                         r  Met_Clock/Beat_Out_reg[3]/C
+                         clock pessimism             -0.513     1.472    
+    SLICE_X1Y32          FDCE (Hold_fdce_C_D)         0.092     1.564    Met_Clock/Beat_Out_reg[3]
   -------------------------------------------------------------------
-                         required time                         -1.560    
-                         arrival time                           2.151    
+                         required time                         -1.564    
+                         arrival time                           1.882    
   -------------------------------------------------------------------
-                         slack                                  0.591    
+                         slack                                  0.318    
 
-Slack (MET) :             0.595ns  (arrival time - required time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.686ns  (logic 0.361ns (52.613%)  route 0.325ns (47.387%))
-  Logic Levels:           2  (CARRY4=1 LUT2=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.983ns
-    Source Clock Delay      (SCD):    1.470ns
-    Clock Pessimism Removal (CPR):    0.513ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           0.631     0.858    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.587     1.470    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y32          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X7Y32          FDCE (Prop_fdce_C_Q)         0.141     1.611 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/Q
-                         net (fo=4, routed)           0.130     1.741    Met_Clock/Metronome_Clock_Divider/Counter[12]
-    SLICE_X6Y31          CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.109     1.850 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__1/O[3]
-                         net (fo=1, routed)           0.195     2.045    Met_Clock/Metronome_Clock_Divider/Counter0[12]
-    SLICE_X7Y32          LUT2 (Prop_lut2_I0_O)        0.111     2.156 r  Met_Clock/Metronome_Clock_Divider/Counter[12]_i_1/O
-                         net (fo=1, routed)           0.000     2.156    Met_Clock/Metronome_Clock_Divider/p_0_in[12]
-    SLICE_X7Y32          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           0.685     1.099    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.856     1.983    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X7Y32          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/C
-                         clock pessimism             -0.513     1.470    
-    SLICE_X7Y32          FDCE (Hold_fdce_C_D)         0.091     1.561    Met_Clock/Metronome_Clock_Divider/Counter_reg[12]
-  -------------------------------------------------------------------
-                         required time                         -1.561    
-                         arrival time                           2.156    
-  -------------------------------------------------------------------
-                         slack                                  0.595    
-
-Slack (MET) :             0.643ns  (arrival time - required time)
+Slack (MET) :             0.587ns  (arrival time - required time)
   Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[13]/C
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[14]/D
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[13]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.763ns  (logic 0.400ns (52.458%)  route 0.363ns (47.542%))
-  Logic Levels:           2  (CARRY4=1 LUT2=1)
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.982ns
-    Source Clock Delay      (SCD):    1.470ns
-    Clock Pessimism Removal (CPR):    0.499ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           0.631     0.858    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.587     1.470    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y32          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[13]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X5Y32          FDCE (Prop_fdce_C_Q)         0.141     1.611 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[13]/Q
-                         net (fo=4, routed)           0.124     1.735    Met_Clock/Metronome_Clock_Divider/Counter[13]
-    SLICE_X6Y32          CARRY4 (Prop_carry4_S[0]_O[1])
-                                                      0.150     1.885 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__2/O[1]
-                         net (fo=1, routed)           0.238     2.124    Met_Clock/Metronome_Clock_Divider/Counter0[14]
-    SLICE_X5Y31          LUT2 (Prop_lut2_I0_O)        0.109     2.233 r  Met_Clock/Metronome_Clock_Divider/Counter[14]_i_1/O
-                         net (fo=1, routed)           0.000     2.233    Met_Clock/Metronome_Clock_Divider/p_0_in[14]
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[14]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    W5                                                0.000     0.000 r  CLK (IN)
-                         net (fo=0)                   0.000     0.000    CLK
-    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
-                         net (fo=1, routed)           0.685     1.099    CLK_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.855     1.982    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[14]/C
-                         clock pessimism             -0.499     1.483    
-    SLICE_X5Y31          FDCE (Hold_fdce_C_D)         0.107     1.590    Met_Clock/Metronome_Clock_Divider/Counter_reg[14]
-  -------------------------------------------------------------------
-                         required time                         -1.590    
-                         arrival time                           2.233    
-  -------------------------------------------------------------------
-                         slack                                  0.643    
-
-Slack (MET) :             0.656ns  (arrival time - required time)
-  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[19]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[19]/D
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             sys_clk_pin
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.763ns  (logic 0.403ns (52.848%)  route 0.360ns (47.152%))
+  Data Path Delay:        0.707ns  (logic 0.386ns (54.611%)  route 0.321ns (45.389%))
   Logic Levels:           2  (CARRY4=1 LUT2=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.982ns
-    Source Clock Delay      (SCD):    1.469ns
-    Clock Pessimism Removal (CPR):    0.513ns
+    Destination Clock Delay (DCD):    1.954ns
+    Source Clock Delay      (SCD):    1.442ns
+    Clock Pessimism Removal (CPR):    0.512ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1397,17 +1275,17 @@ Slack (MET) :             0.656ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.631     0.858    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.586     1.469    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[19]/C
+                         net (fo=34, routed)          0.559     1.442    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y31         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[13]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y31          FDCE (Prop_fdce_C_Q)         0.128     1.597 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[19]/Q
-                         net (fo=4, routed)           0.176     1.773    Met_Clock/Metronome_Clock_Divider/Counter[19]
-    SLICE_X6Y33          CARRY4 (Prop_carry4_S[2]_O[2])
-                                                      0.163     1.936 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__3/O[2]
-                         net (fo=1, routed)           0.184     2.120    Met_Clock/Metronome_Clock_Divider/Counter0[19]
-    SLICE_X5Y31          LUT2 (Prop_lut2_I0_O)        0.112     2.232 r  Met_Clock/Metronome_Clock_Divider/Counter[19]_i_1/O
-                         net (fo=1, routed)           0.000     2.232    Met_Clock/Metronome_Clock_Divider/p_0_in[19]
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[19]/D
+    SLICE_X12Y31         FDCE (Prop_fdce_C_Q)         0.164     1.606 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[13]/Q
+                         net (fo=4, routed)           0.185     1.791    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[13]
+    SLICE_X11Y31         CARRY4 (Prop_carry4_S[0]_O[0])
+                                                      0.115     1.906 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__2/O[0]
+                         net (fo=1, routed)           0.136     2.042    Met_Clock/Metronome_Clock_Divider/Counter0_carry__2_n_7
+    SLICE_X12Y31         LUT2 (Prop_lut2_I0_O)        0.107     2.149 r  Met_Clock/Metronome_Clock_Divider/Counter[13]_i_1/O
+                         net (fo=1, routed)           0.000     2.149    Met_Clock/Metronome_Clock_Divider/p_0_in[13]
+    SLICE_X12Y31         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[13]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1417,15 +1295,123 @@ Slack (MET) :             0.656ns  (arrival time - required time)
     W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
                          net (fo=1, routed)           0.685     1.099    CLK_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
-                         net (fo=32, routed)          0.855     1.982    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
-    SLICE_X5Y31          FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[19]/C
-                         clock pessimism             -0.513     1.469    
-    SLICE_X5Y31          FDCE (Hold_fdce_C_D)         0.107     1.576    Met_Clock/Metronome_Clock_Divider/Counter_reg[19]
+                         net (fo=34, routed)          0.827     1.954    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X12Y31         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[13]/C
+                         clock pessimism             -0.512     1.442    
+    SLICE_X12Y31         FDCE (Hold_fdce_C_D)         0.120     1.562    Met_Clock/Metronome_Clock_Divider/Counter_reg[13]
   -------------------------------------------------------------------
-                         required time                         -1.576    
-                         arrival time                           2.232    
+                         required time                         -1.562    
+                         arrival time                           2.149    
   -------------------------------------------------------------------
-                         slack                                  0.656    
+                         slack                                  0.587    
+
+Slack (MET) :             0.626ns  (arrival time - required time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.757ns  (logic 0.417ns (55.058%)  route 0.340ns (44.942%))
+  Logic Levels:           2  (CARRY4=1 LUT2=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.952ns
+    Source Clock Delay      (SCD):    1.440ns
+    Clock Pessimism Removal (CPR):    0.512ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          0.557     1.440    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.148     1.588 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/Q
+                         net (fo=4, routed)           0.200     1.788    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[6]
+    SLICE_X11Y29         CARRY4 (Prop_carry4_S[1]_O[1])
+                                                      0.163     1.951 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__0/O[1]
+                         net (fo=1, routed)           0.141     2.092    Met_Clock/Metronome_Clock_Divider/Counter0_carry__0_n_6
+    SLICE_X10Y29         LUT2 (Prop_lut2_I0_O)        0.106     2.198 r  Met_Clock/Metronome_Clock_Divider/Counter[6]_i_1/O
+                         net (fo=1, routed)           0.000     2.198    Met_Clock/Metronome_Clock_Divider/p_0_in[6]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          0.825     1.952    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/C
+                         clock pessimism             -0.512     1.440    
+    SLICE_X10Y29         FDCE (Hold_fdce_C_D)         0.131     1.571    Met_Clock/Metronome_Clock_Divider/Counter_reg[6]
+  -------------------------------------------------------------------
+                         required time                         -1.571    
+                         arrival time                           2.198    
+  -------------------------------------------------------------------
+                         slack                                  0.626    
+
+Slack (MET) :             0.677ns  (arrival time - required time)
+  Source:                 Met_Clock/Metronome_Clock_Divider/Counter_reg[16]/C
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            Met_Clock/Metronome_Clock_Divider/Counter_reg[16]/D
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.808ns  (logic 0.420ns (51.965%)  route 0.388ns (48.035%))
+  Logic Levels:           2  (CARRY4=1 LUT2=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.952ns
+    Source Clock Delay      (SCD):    1.440ns
+    Clock Pessimism Removal (CPR):    0.512ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         0.226     0.226 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.631     0.858    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.884 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          0.557     1.440    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[16]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X10Y29         FDCE (Prop_fdce_C_Q)         0.148     1.588 r  Met_Clock/Metronome_Clock_Divider/Counter_reg[16]/Q
+                         net (fo=4, routed)           0.184     1.773    Met_Clock/Metronome_Clock_Divider/Counter_reg_n_0_[16]
+    SLICE_X11Y31         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.161     1.934 r  Met_Clock/Metronome_Clock_Divider/Counter0_carry__2/O[3]
+                         net (fo=1, routed)           0.204     2.137    Met_Clock/Metronome_Clock_Divider/Counter0_carry__2_n_4
+    SLICE_X10Y29         LUT2 (Prop_lut2_I0_O)        0.111     2.248 r  Met_Clock/Metronome_Clock_Divider/Counter[16]_i_1/O
+                         net (fo=1, routed)           0.000     2.248    Met_Clock/Metronome_Clock_Divider/p_0_in[16]
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    W5                                                0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    W5                   IBUF (Prop_ibuf_I_O)         0.414     0.414 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.685     1.099    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.128 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=34, routed)          0.825     1.952    Met_Clock/Metronome_Clock_Divider/CLK_IBUF_BUFG
+    SLICE_X10Y29         FDCE                                         r  Met_Clock/Metronome_Clock_Divider/Counter_reg[16]/C
+                         clock pessimism             -0.512     1.440    
+    SLICE_X10Y29         FDCE (Hold_fdce_C_D)         0.131     1.571    Met_Clock/Metronome_Clock_Divider/Counter_reg[16]
+  -------------------------------------------------------------------
+                         required time                         -1.571    
+                         arrival time                           2.248    
+  -------------------------------------------------------------------
+                         slack                                  0.677    
 
 
 
@@ -1440,35 +1426,35 @@ Sources:            { CLK }
 
 Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
 Min Period        n/a     BUFG/I   n/a            2.155         10.000      7.845      BUFGCTRL_X0Y0  CLK_IBUF_BUFG_inst/I
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X5Y33    Met_Clock/Beat_Out_reg[0]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X5Y33    Met_Clock/Beat_Out_reg[1]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X5Y33    Met_Clock/Beat_Out_reg[2]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X5Y33    Met_Clock/Beat_Out_reg[3]/C
-Min Period        n/a     FDPE/C   n/a            1.000         10.000      9.000      SLICE_X5Y33    Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X5Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X5Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[11]/C
-Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X7Y32    Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/C
-Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Beat_Out_reg[0]/C
-Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Beat_Out_reg[1]/C
-Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Beat_Out_reg[2]/C
-Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Beat_Out_reg[3]/C
-Low Pulse Width   Slow    FDPE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
-Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/C
-Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/C
-Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[11]/C
-Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y32    Met_Clock/Metronome_Clock_Divider/Counter_reg[12]/C
-Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y32    Met_Clock/Metronome_Clock_Divider/Counter_reg[13]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Beat_Out_reg[0]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Beat_Out_reg[1]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Beat_Out_reg[2]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Beat_Out_reg[3]/C
-High Pulse Width  Fast    FDPE/C   n/a            0.500         5.000       4.500      SLICE_X5Y33    Met_Clock/Metronome_Clock_Divider/CLK_Slow_reg/C
-High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[0]/C
-High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/C
-High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[10]/C
-High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X5Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[11]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X1Y32    Met_Clock/Beat_Out_reg[0]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X10Y33   Met_Clock/Metronome_Clock_Divider/Counter_reg[25]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[26]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X10Y29   Met_Clock/Metronome_Clock_Divider/Counter_reg[2]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X10Y33   Met_Clock/Metronome_Clock_Divider/Counter_reg[4]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[5]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X10Y29   Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[7]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[26]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[3]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[5]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[7]/C
+Low Pulse Width   Fast    FDPE/C   n/a            0.500         5.000       4.500      SLICE_X2Y22    Metronome_Display/Pixel_CLK/CLK_Slow_reg/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X2Y22    Metronome_Display/Pixel_CLK/Counter_reg[0]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[17]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[1]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[21]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X7Y31    Met_Clock/Metronome_Clock_Divider/Counter_reg[24]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y32    Met_Clock/Beat_Out_reg[0]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X10Y33   Met_Clock/Metronome_Clock_Divider/Counter_reg[25]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X10Y29   Met_Clock/Metronome_Clock_Divider/Counter_reg[2]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X10Y33   Met_Clock/Metronome_Clock_Divider/Counter_reg[4]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X10Y29   Met_Clock/Metronome_Clock_Divider/Counter_reg[6]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X12Y30   Met_Clock/Metronome_Clock_Divider/Counter_reg[8]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X10Y29   Met_Clock/Metronome_Clock_Divider/Counter_reg[9]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y32    Met_Clock/Beat_Out_reg[1]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y32    Met_Clock/Beat_Out_reg[2]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y32    Met_Clock/Beat_Out_reg[3]/C
 
 
 

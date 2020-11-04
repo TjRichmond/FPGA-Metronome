@@ -39,7 +39,7 @@ module Metronome_Clock
     assign Metronome_Counter_Limit = 100000000 - (BPM_Select * 3125000);
     
     reg [1:0] Beat_Counter;
-    initial Beat_Counter = 0;
+    initial Beat_Counter = 2'b0;
     
     Clock_Divider #(Met_Bit_Size,Met_Duty_Cycle) Metronome_Clock_Divider(.CLK(CLK),.RST(RST),.Counter_Limit(Metronome_Counter_Limit)
     ,.CLK_Slow(Met_CLK));
@@ -50,7 +50,7 @@ module Metronome_Clock
     begin
         if(RST)
             begin
-                Beat_Counter <= 0;
+                Beat_Counter <= 2'b0;
             end
         else
             begin
@@ -66,14 +66,14 @@ module Metronome_Clock
     begin
         if(RST)
             begin
-                Beat_Out <= 0;
+                Beat_Out <= 4'b0;
             end
         else
             begin
                 Beat_Out[Beat_Counter] <= Met_CLK;
-                Beat_Out[Beat_Counter+1] <= 0;
-                Beat_Out[Beat_Counter+2] <= 0;
-                Beat_Out[Beat_Counter+3] <= 0;
+                Beat_Out[Beat_Counter+1] <= 1'b0;
+                Beat_Out[Beat_Counter+2] <= 1'b0;
+                Beat_Out[Beat_Counter+3] <= 1'b0;
             end
     end
 endmodule

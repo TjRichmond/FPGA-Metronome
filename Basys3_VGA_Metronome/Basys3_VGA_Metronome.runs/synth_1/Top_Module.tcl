@@ -35,6 +35,9 @@ set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
   D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Clock_Divider.v
   D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Metronome_Clock.v
+  D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA.v
+  D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Image.v
+  D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Timing.v
   D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Top_Module.v
 }
 # Mark all dcp files as not used in implementation to prevent them from being
