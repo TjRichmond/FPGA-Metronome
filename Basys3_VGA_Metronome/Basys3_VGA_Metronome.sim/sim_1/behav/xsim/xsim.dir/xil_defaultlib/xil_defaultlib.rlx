@@ -3,8 +3,11 @@
 Sep  4 2019
 09:57:52
 D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
+D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sim_1/new/tb_Top.v,1604911671,verilog,,,,tb_Top,,,,,,,,
 D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sim_1/new/tb_VGA.v,1604476621,verilog,,,,tb_VGA,,,,,,,,
-D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Clock_Divider.v,1604469629,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA.v,,Clock_Divider,,,,,,,,
-D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA.v,1604477149,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Image.v,,VGA,,,,,,,,
-D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Image.v,1604477117,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Timing.v,,VGA_Image,,,,,,,,
-D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Timing.v,1604476509,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sim_1/new/tb_VGA.v,,VGA_Timing,,,,,,,,
+D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Clock_Divider.v,1604469629,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Metronome_Clock.v,,Clock_Divider,,,,,,,,
+D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Metronome_Clock.v,1604474054,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Top_Module.v,,Metronome_Clock,,,,,,,,
+D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Top_Module.v,1604546251,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA.v,,Top_Module,,,,,,,,
+D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA.v,1604912183,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Image.v,,VGA,,,,,,,,
+D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Image.v,1604912468,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Timing.v,,VGA_Image,,,,,,,,
+D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Timing.v,1604913824,verilog,,D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sim_1/new/tb_Top.v,,VGA_Timing,,,,,,,,

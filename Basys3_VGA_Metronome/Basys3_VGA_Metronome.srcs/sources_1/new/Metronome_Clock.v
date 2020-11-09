@@ -30,7 +30,7 @@ module Metronome_Clock
     // Met_Bit_Size sets allocates the necesary amount of bits for the counter variable
     // Met_Duty_Cycle sets the duty cycle of metronome waveform; supports options 0%-100%
     // Example: 5 -> 5%, 20 -> 20%, ... 100 -> 100%
-    parameter Met_Bit_Size = 27, Met_Duty_Cycle = 5;
+    parameter Met_Bit_Size = 27, Met_Duty_Cycle = 10;
     
     // Configure the maximumn counter value for the metronome clock
     // Depending on inputed BPM selection, the BPM will multiply to a constant value which is equivalent to 5 BPM

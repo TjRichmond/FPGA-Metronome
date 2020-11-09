@@ -1,0 +1,15 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../Basys3_VGA_Metronome.srcs/sources_1/new/Clock_Divider.v" \
+"../../../../Basys3_VGA_Metronome.srcs/sources_1/new/Metronome_Clock.v" \
+"../../../../Basys3_VGA_Metronome.srcs/sources_1/new/Top_Module.v" \
+"../../../../Basys3_VGA_Metronome.srcs/sources_1/new/VGA.v" \
+"../../../../Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Image.v" \
+"../../../../Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Timing.v" \
+"../../../../Basys3_VGA_Metronome.srcs/sim_1/new/tb_Top.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

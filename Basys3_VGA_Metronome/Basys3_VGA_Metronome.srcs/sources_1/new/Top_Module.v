@@ -32,7 +32,7 @@ module Top_Module
     Metronome_Clock Met_Clock(.CLK(CLK),.RST(RST),.BPM_Select(BPM_Select),.Beat_Out(LED_Met));
     
     // Display Image module to translate metronome singal into image for display
-    VGA Metronome_Display(.CLK_100MHz(CLK),.RST(RST),.H_Sync(VGA_H_Sync),.V_Sync(VGA_V_Sync),.Red(VGA_Red),.Green(VGA_Green),
+    VGA Metronome_Display(.CLK_100MHz(CLK),.RST(RST),.Metronome_Beat(LED_Met),.H_Sync(VGA_H_Sync),.V_Sync(VGA_V_Sync),.Red(VGA_Red),.Green(VGA_Green),
     .Blue(VGA_Blue));
     
 endmodule
