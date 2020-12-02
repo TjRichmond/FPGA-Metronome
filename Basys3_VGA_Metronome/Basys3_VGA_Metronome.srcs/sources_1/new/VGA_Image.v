@@ -1,19 +1,19 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: San Diego State University
+// Engineer: Tristan Richmond
 // 
 // Create Date: 11/03/2020 10:58:28 PM
 // Design Name: 
 // Module Name: VGA_Image
-// Project Name: 
-// Target Devices: 
+// Project Name: Basys3_VGA_Metronome
+// Target Devices: Basys3 Discovery Board
 // Tool Versions: 
 // Description: 
 // 
 // Dependencies: 
 // 
-// Revision:
+// Revision: A
 // Revision 0.01 - File Created
 // Additional Comments:
 // 
@@ -23,7 +23,7 @@
 module VGA_Image
     (
     input Pixel_CLK, RST,
-    input [3:0] Beat,
+    input [3:0] Beat, Accent,
     output H_Sync, V_Sync,
     output reg [3:0] Red, Green, Blue
     );
@@ -54,11 +54,21 @@ module VGA_Image
                 // Green if beat, purple otherwise
                 if(X_Pos >= Left_Square && X_Pos < Right_Square && Y_Pos >= Top_Square && Y_Pos < Bottom_Square)
                     begin
-                        if(Beat!=4'b0000)
+                        // If the selected beat doesn't have the accent switch indicated, display green
+                        if((Beat == 4'b1000 && Accent[0] == 1'b0)||(Beat == 4'b0100 && Accent[1] == 1'b0)
+                         ||(Beat == 4'b0010 && Accent[2] == 1'b0)||(Beat == 4'b0001 && Accent[3] == 1'b0))
                             begin
                                 Red <= 4'h0;
                                 Green <= 4'hF;
                                 Blue <= 4'h0;
+                            end
+                        // If the selected beat has the accent switch indicated, display blue
+                        else if((Beat == 4'b1000 && Accent[0] == 1'b1)||(Beat == 4'b0100 && Accent[1] == 1'b1)
+                              ||(Beat == 4'b0010 && Accent[2] == 1'b1)||(Beat == 4'b0001 && Accent[3] == 1'b1))
+                            begin
+                                Red <= 4'h3;
+                                Green <= 4'h0;
+                                Blue <= 4'hF;
                             end
                         else
                             begin

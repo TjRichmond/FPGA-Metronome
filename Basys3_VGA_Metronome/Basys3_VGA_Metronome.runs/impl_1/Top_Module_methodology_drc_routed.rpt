@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
-| Date         : Mon Nov  9 03:09:44 2020
+| Date         : Wed Dec  2 01:21:23 2020
 | Host         : DESKTOP-UKCSK2N running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Top_Module_methodology_drc_routed.rpt -pb Top_Module_methodology_drc_routed.pb -rpx Top_Module_methodology_drc_routed.rpx
 | Design       : Top_Module
@@ -23,13 +23,13 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 37
+             Violations found: 62
 +-----------+------------------+-------------------------------+------------+
 | Rule      | Severity         | Description                   | Violations |
 +-----------+------------------+-------------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell   | 26         |
-| TIMING-18 | Warning          | Missing input or output delay | 9          |
-| TIMING-20 | Warning          | Non-clocked latch             | 2          |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell   | 34         |
+| TIMING-18 | Warning          | Missing input or output delay | 25         |
+| TIMING-20 | Warning          | Non-clocked latch             | 3          |
 +-----------+------------------+-------------------------------+------------+
 
 2. REPORT DETAILS
@@ -164,49 +164,169 @@ Non-clocked sequential cell
 The clock pin Metronome_Display/VGA_Display/Display_Timing/Y_Pos_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
+TIMING-17#27 Critical Warning
+Non-clocked sequential cell  
+The clock pin Segment_Display/BPM_Value_A_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#28 Critical Warning
+Non-clocked sequential cell  
+The clock pin Segment_Display/BPM_Value_B_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#29 Critical Warning
+Non-clocked sequential cell  
+The clock pin Segment_Display/BPM_Value_B_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#30 Critical Warning
+Non-clocked sequential cell  
+The clock pin Segment_Display/BPM_Value_B_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#31 Critical Warning
+Non-clocked sequential cell  
+The clock pin Segment_Display/BPM_Value_B_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#32 Critical Warning
+Non-clocked sequential cell  
+The clock pin Segment_Display/BPM_Value_C_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#33 Critical Warning
+Non-clocked sequential cell  
+The clock pin Segment_Display/Metronome_Info_Display/Segment_Select_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#34 Critical Warning
+Non-clocked sequential cell  
+The clock pin Segment_Display/Metronome_Info_Display/Segment_Select_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
 TIMING-18#1 Warning
 Missing input or output delay  
-An input delay is missing on BPM_Select[0] relative to clock(s) sys_clk_pin
+An input delay is missing on Accent_Select[0] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#2 Warning
 Missing input or output delay  
-An input delay is missing on BPM_Select[1] relative to clock(s) sys_clk_pin
+An input delay is missing on Accent_Select[1] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#3 Warning
 Missing input or output delay  
-An input delay is missing on BPM_Select[2] relative to clock(s) sys_clk_pin
+An input delay is missing on Accent_Select[2] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#4 Warning
 Missing input or output delay  
-An input delay is missing on BPM_Select[3] relative to clock(s) sys_clk_pin
+An input delay is missing on Accent_Select[3] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#5 Warning
 Missing input or output delay  
-An input delay is missing on RST relative to clock(s) sys_clk_pin
+An input delay is missing on BPM_Select[0] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#6 Warning
 Missing input or output delay  
-An output delay is missing on LED_Met[0] relative to clock(s) sys_clk_pin
+An input delay is missing on BPM_Select[1] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#7 Warning
 Missing input or output delay  
-An output delay is missing on LED_Met[1] relative to clock(s) sys_clk_pin
+An input delay is missing on BPM_Select[2] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#8 Warning
 Missing input or output delay  
-An output delay is missing on LED_Met[2] relative to clock(s) sys_clk_pin
+An input delay is missing on BPM_Select[3] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-18#9 Warning
 Missing input or output delay  
+An input delay is missing on RST relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#10 Warning
+Missing input or output delay  
+An output delay is missing on Digit_Cathode[0] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#11 Warning
+Missing input or output delay  
+An output delay is missing on Digit_Cathode[1] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#12 Warning
+Missing input or output delay  
+An output delay is missing on Digit_Cathode[2] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#13 Warning
+Missing input or output delay  
+An output delay is missing on Digit_Cathode[3] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#14 Warning
+Missing input or output delay  
+An output delay is missing on Digit_Cathode[4] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#15 Warning
+Missing input or output delay  
+An output delay is missing on Digit_Cathode[5] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#16 Warning
+Missing input or output delay  
+An output delay is missing on Digit_Cathode[6] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#17 Warning
+Missing input or output delay  
+An output delay is missing on Digit_Cathode[7] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#18 Warning
+Missing input or output delay  
+An output delay is missing on LED_Met[0] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#19 Warning
+Missing input or output delay  
+An output delay is missing on LED_Met[1] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#20 Warning
+Missing input or output delay  
+An output delay is missing on LED_Met[2] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#21 Warning
+Missing input or output delay  
 An output delay is missing on LED_Met[3] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#22 Warning
+Missing input or output delay  
+An output delay is missing on Select_Anode[0] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#23 Warning
+Missing input or output delay  
+An output delay is missing on Select_Anode[1] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#24 Warning
+Missing input or output delay  
+An output delay is missing on Select_Anode[2] relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#25 Warning
+Missing input or output delay  
+An output delay is missing on Select_Anode[3] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-20#1 Warning
@@ -215,6 +335,11 @@ The latch Metronome_Display/VGA_Display/Green_reg[3] cannot be properly analyzed
 Related violations: <none>
 
 TIMING-20#2 Warning
+Non-clocked latch  
+The latch Metronome_Display/VGA_Display/Red_reg[1] cannot be properly analyzed as its control pin Metronome_Display/VGA_Display/Red_reg[1]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#3 Warning
 Non-clocked latch  
 The latch Metronome_Display/VGA_Display/Red_reg[3] cannot be properly analyzed as its control pin Metronome_Display/VGA_Display/Red_reg[3]/G is not reached by a timing clock
 Related violations: <none>

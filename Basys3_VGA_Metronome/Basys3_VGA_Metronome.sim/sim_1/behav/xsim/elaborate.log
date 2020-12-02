@@ -3,16 +3,21 @@ Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
 Running: D:/Vivado/Vivado/2019.1/bin/unwrapped/win64.o/xelab.exe -wto d919dc1cf47846c4ab391521a2c20720 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_Top_behav xil_defaultlib.tb_Top xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
+WARNING: [VRFC 10-3091] actual bit length 20 differs from formal bit length 19 for port 'Counter_Limit' [D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Metronome_Info.v:42]
+WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 4 for port 'Data_D' [D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Metronome_Info.v:77]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.Clock_Divider(Duty_Cycle=5)
+Compiling module xil_defaultlib.Clock_Divider(Duty_Cycle=10)
 Compiling module xil_defaultlib.Metronome_Clock
 Compiling module xil_defaultlib.Clock_Divider(CLK_Size=2)
 Compiling module xil_defaultlib.VGA_Timing
 Compiling module xil_defaultlib.VGA_Image
 Compiling module xil_defaultlib.VGA
+Compiling module xil_defaultlib.Clock_Divider(CLK_Size=19)
+Compiling module xil_defaultlib.Seven_Segment
+Compiling module xil_defaultlib.Metronome_Info
 Compiling module xil_defaultlib.Top_Module
 Compiling module xil_defaultlib.tb_Top
 Compiling module xil_defaultlib.glbl

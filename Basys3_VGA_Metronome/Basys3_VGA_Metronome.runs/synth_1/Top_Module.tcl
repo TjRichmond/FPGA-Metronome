@@ -19,7 +19,6 @@ proc create_report { reportName command } {
 }
 set_param chipscope.maxJobs 2
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -36,6 +35,8 @@ set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
   D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Clock_Divider.v
   D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Metronome_Clock.v
+  D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/Metronome_Info.v
+  D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/imports/new/Seven_Segment.v
   D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA.v
   D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Image.v
   D:/Vivado/FPGA-Metronome/Basys3_VGA_Metronome/Basys3_VGA_Metronome.srcs/sources_1/new/VGA_Timing.v

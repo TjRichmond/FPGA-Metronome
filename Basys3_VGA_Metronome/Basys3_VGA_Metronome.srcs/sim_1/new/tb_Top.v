@@ -25,12 +25,13 @@ module tb_Top;
 parameter Clock_Period = 5;
 
 reg CLK, RST;
-reg [3:0] BPM_Sel;
+reg [3:0] BPM_Sel, Accent_Sel;
 wire H_Sync, V_Sync;
-wire [3:0] LED, Red, Green, Blue;
+wire [3:0] LED, Red, Green, Blue, Select_Anode;
+wire [7:0] Digit_Cathode;
 
-Top_Module Top(.CLK(CLK),.RST(RST),.BPM_Select(BPM_Sel),.VGA_H_Sync(H_Sync),.VGA_V_Sync(V_Sync),.LED_Met(LED)
-,.VGA_Red(Red),.VGA_Green(Green),.VGA_Blue(Blue));
+Top_Module Top(.CLK(CLK),.RST(RST),.BPM_Select(BPM_Sel),.Accent_Select(Accent_Sel),.VGA_H_Sync(H_Sync),.VGA_V_Sync(V_Sync)
+,.LED_Met(LED),.VGA_Red(Red),.VGA_Green(Green),.VGA_Blue(Blue),.Select_Anode(Select_Anode),.Digit_Cathode(Digit_Cathode));
 
 initial CLK = 0;
 
@@ -38,6 +39,7 @@ always #(Clock_Period/2) CLK = ~CLK;
 initial
     begin
         BPM_Sel <= 4'b1111;
+        Accent_Sel <= 4'b1000;
         RST=1;
         repeat(2) @(posedge CLK);
         RST=0;

@@ -23,7 +23,7 @@
 module VGA
     (
     input CLK_100MHz, RST,
-    input [3:0] Metronome_Beat,
+    input [3:0] Metronome_Beat, Accent_Beat,
     output H_Sync, V_Sync,
     output [3:0] Red, Green, Blue
     );
@@ -33,7 +33,7 @@ module VGA
     
     Clock_Divider #(2,50)Pixel_CLK(.CLK(CLK_100MHz),.RST(RST),.Counter_Limit(CLK_50MHz_Limit),.CLK_Slow(CLK_50MHz));
     
-    VGA_Image VGA_Display(.Pixel_CLK(CLK_50MHz),.RST(RST),.Beat(Metronome_Beat),.H_Sync(H_Sync),.V_Sync(V_Sync),
+    VGA_Image VGA_Display(.Pixel_CLK(CLK_50MHz),.RST(RST),.Beat(Metronome_Beat),.Accent(Accent_Beat),.H_Sync(H_Sync),.V_Sync(V_Sync),
     .Red(Red),.Green(Green),.Blue(Blue));
     
 endmodule

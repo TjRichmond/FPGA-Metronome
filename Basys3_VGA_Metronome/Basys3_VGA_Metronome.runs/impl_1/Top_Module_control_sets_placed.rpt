@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1.3 (win64) Build 2644227 Wed Sep  4 09:45:24 MDT 2019
-| Date         : Mon Nov  9 03:09:20 2020
+| Date         : Wed Dec  2 01:20:58 2020
 | Host         : DESKTOP-UKCSK2N running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Top_Module_control_sets_placed.rpt
 | Design       : Top_Module
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     6 |
-|    Minimum number of control sets                        |     6 |
+| Total control sets                                       |     8 |
+|    Minimum number of control sets                        |     8 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    30 |
+| Unused register locations in slices containing registers |    37 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,13 +39,13 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     6 |
+| Total control sets |     8 |
 | >= 0 to < 4        |     3 |
 | >= 4 to < 6        |     0 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     0 |
+| >= 8 to < 10       |     1 |
 | >= 10 to < 12      |     1 |
-| >= 12 to < 14      |     1 |
+| >= 12 to < 14      |     2 |
 | >= 14 to < 16      |     0 |
 | >= 16              |     1 |
 +--------------------+-------+
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               0 |            0 |
-| No           | No                    | Yes                    |              52 |           18 |
-| No           | Yes                   | No                     |               2 |            1 |
+| No           | No                    | No                     |              12 |            6 |
+| No           | No                    | Yes                    |              80 |           23 |
+| No           | Yes                   | No                     |               3 |            1 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              12 |            6 |
+| Yes          | No                    | Yes                    |              12 |            7 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -73,12 +73,14 @@ Table of Contents
 +------------------------------------------------------------+------------------------------------------------------+------------------+------------------+----------------+
 |                        Clock Signal                        |                     Enable Signal                    | Set/Reset Signal | Slice Load Count | Bel Load Count |
 +------------------------------------------------------------+------------------------------------------------------+------------------+------------------+----------------+
-|  Metronome_Display/Pixel_CLK/CLK                           | Metronome_Display/VGA_Display/Display_Timing/H_Sync  | RST_IBUF         |                1 |              1 |
+|  Metronome_Display/Pixel_CLK/CLK_Slow_reg_0                | Metronome_Display/VGA_Display/Display_Timing/H_Sync  | RST_IBUF         |                1 |              1 |
 |  Met_Clock/Metronome_Clock_Divider/CLK_Slow                |                                                      | RST_IBUF         |                1 |              2 |
-|  Metronome_Display/VGA_Display/Display_Timing/Draw_Display |                                                      | RST_IBUF         |                1 |              2 |
-|  Metronome_Display/Pixel_CLK/CLK                           | Metronome_Display/VGA_Display/Display_Timing/Y_Pos_1 | RST_IBUF         |                5 |             11 |
-|  Metronome_Display/Pixel_CLK/CLK                           |                                                      | RST_IBUF         |                5 |             12 |
-|  CLK_IBUF_BUFG                                             |                                                      | RST_IBUF         |               12 |             38 |
+|  Metronome_Display/VGA_Display/Display_Timing/Draw_Display |                                                      | RST_IBUF         |                1 |              3 |
+|  Segment_Display/Segment_Refresh/CLK_Slow_reg_0            |                                                      | RST_IBUF         |                2 |              8 |
+|  Metronome_Display/Pixel_CLK/CLK_Slow_reg_0                | Metronome_Display/VGA_Display/Display_Timing/Y_Pos_1 | RST_IBUF         |                6 |             11 |
+|  Metronome_Display/Pixel_CLK/CLK_Slow_reg_0                |                                                      | RST_IBUF         |                4 |             12 |
+|  CLK_IBUF_BUFG                                             |                                                      |                  |                6 |             12 |
+|  CLK_IBUF_BUFG                                             |                                                      | RST_IBUF         |               16 |             58 |
 +------------------------------------------------------------+------------------------------------------------------+------------------+------------------+----------------+
 
 

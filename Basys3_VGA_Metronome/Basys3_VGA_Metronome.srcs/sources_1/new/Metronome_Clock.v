@@ -16,15 +16,16 @@
 // Revision: A
 // Revision 0.01 - File Created
 // Additional Comments:
-// This metronome supports BPM values between 60 and 120 in increments of 5
+// This metronome supports BPM values between 60 and 135 in increments of 5
 //////////////////////////////////////////////////////////////////////////////////
 
 
 module Metronome_Clock
     (
     input CLK, RST,
-    input [3:0] BPM_Select,
-    output reg [0:3] Beat_Out
+    input [3:0] BPM_Select, Accent_Select,
+    output reg [0:3] Beat_Out,
+    output [Met_Bit_Size-1:0] Metronome_Counter_Limit
     );
     
     // Met_Bit_Size sets allocates the necesary amount of bits for the counter variable
@@ -35,8 +36,8 @@ module Metronome_Clock
     // Configure the maximumn counter value for the metronome clock
     // Depending on inputed BPM selection, the BPM will multiply to a constant value which is equivalent to 5 BPM
     // This product will be subtracted from the base limit which is the equivalent for 60 BPM
-    wire [Met_Bit_Size-1:0] Metronome_Counter_Limit;
-    assign Metronome_Counter_Limit = 100000000 - (BPM_Select * 3125000);
+    //wire [Met_Bit_Size-1:0] Metronome_Counter_Limit; 3125000
+    assign Metronome_Counter_Limit = 100000000 - (BPM_Select * 4166667);
     
     reg [1:0] Beat_Counter;
     initial Beat_Counter = 2'b0;
@@ -44,6 +45,7 @@ module Metronome_Clock
     Clock_Divider #(Met_Bit_Size,Met_Duty_Cycle) Metronome_Clock_Divider(.CLK(CLK),.RST(RST),.Counter_Limit(Metronome_Counter_Limit)
     ,.CLK_Slow(Met_CLK));
     
+   
     // State Machine that adds to the Beat Counter each time a beat is reached
     // 4 beats total before it resets to the 1st beat
     always @(posedge Met_CLK or posedge RST)
