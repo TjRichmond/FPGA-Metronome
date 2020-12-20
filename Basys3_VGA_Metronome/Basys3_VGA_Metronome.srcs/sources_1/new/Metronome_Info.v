@@ -51,9 +51,6 @@ module Metronome_Info
             end
          else
             begin
-                //BPM_Value_C <= 4'b0001;
-                //BPM_Value_B <= 4'b0001;
-                //BPM_Value_A <= 4'b0001;
                 // When the BPM is odd display 5 in A segment
                 // Otherwise display 0 in A segment
                 if(BPM_Select[0]==1) BPM_Value_A <= 5;
